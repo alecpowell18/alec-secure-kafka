@@ -1,3 +1,5 @@
+#Using the single node install you created in the first 30 days, Setup Authentication of your choice for two users, create an ACL to allow/de-allow something for the 2 users, publish as one user to show it works and as the other user to show it (rightly) is denied by ACL rule.
+
 #list topics first (as admin user)
 kafka-topics --bootstrap-server localhost:9094 --list --command-config admin.conf
 

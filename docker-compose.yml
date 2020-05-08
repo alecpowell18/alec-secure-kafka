@@ -39,7 +39,10 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_SASL_ENABLED_MECHANISMS: PLAIN
       KAFKA_AUTHORIZER_CLASS_NAME: kafka.security.authorizer.AclAuthorizer
-      KAFKA_SUPER_USERS: User:broker1;User:admin
+      #User:localhost is for demonstrating mTLS / SSL Auth thru port 9093 using localhost certs.
+      #User:broker1 certs are only used by the broker (for imaginary inter-broker comms)
+      #User:admin is a SASL principal which uses client1 certs (like everyone does for this SASL demo)
+      KAFKA_SUPER_USERS: User:localhost;User:broker1;User:admin
       KAFKA_LISTENER_NAME_SSL_SSL_PRINCIPAL_MAPPING_RULES: RULE:^CN=([a-zA-Z0-9.]*).*$$/$$1/ , DEFAULT
       KAFKA_OPTS: -Djava.security.auth.login.config=/etc/kafka/secrets/broker_jaas.conf
     volumes:
